@@ -26,4 +26,39 @@ describe("Thermostat", () => {
     expect(thermostat.down()).toEqual(10)
   })
 
+  it('resets the temperature to 20', () => {
+    thermostat.up()
+    thermostat.up()
+    expect(thermostat.reset()).toEqual(20)
+  })
+
+  describe("Power Save", () => {
+    it("limits the max temperature to 25 when on", () => {
+      for(i = 1; i <= 15; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.up()).toEqual(25)
+    })
+
+    it("limits the max temperature to 32 when off", () => {
+      thermostat.switchPowerSave()
+      for(i = 1; i <= 15; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.up()).toEqual(32)
+    })
+
+    it('resets to 20 when switched on or off', () => {
+      thermostat.up()
+      thermostat.up()
+      thermostat.switchPowerSave()
+      expect(thermostat.targetTemperature).toEqual(20)
+      thermostat.down()
+      thermostat.down()
+      thermostat.switchPowerSave()
+      expect(thermostat.targetTemperature).toEqual(20)
+    })
+  })
+
+
 })
