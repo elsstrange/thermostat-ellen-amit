@@ -35,6 +35,10 @@ As a user,
 So my pipes don't freeze
 I want a minimum target temperature of 10 degrees
 
+As a user,
+So I can monitor how environmentally friendly I am
+I want to view my current energy usage with a pretty user interface.
+
 
 ## Domain
 

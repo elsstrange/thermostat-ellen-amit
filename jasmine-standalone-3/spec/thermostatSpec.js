@@ -1,3 +1,5 @@
+'use strict';
+
 describe("Thermostat", () => {
   let thermostat
 
@@ -20,7 +22,7 @@ describe("Thermostat", () => {
   })
 
   it("has a minimum temperature of 10 degrees", () => {
-    for(i = 1; i<=15; i++) {
+    for(let i = 1; i<=15; i++) {
       thermostat.down()
     }
     expect(thermostat.down()).toEqual(10)
@@ -34,7 +36,7 @@ describe("Thermostat", () => {
 
   describe("Power Save", () => {
     it("limits the max temperature to 25 when on", () => {
-      for(i = 1; i <= 15; i++) {
+      for(let i = 1; i <= 15; i++) {
         thermostat.up()
       }
       expect(thermostat.up()).toEqual(25)
@@ -42,7 +44,7 @@ describe("Thermostat", () => {
 
     it("limits the max temperature to 32 when off", () => {
       thermostat.switchPowerSave()
-      for(i = 1; i <= 15; i++) {
+      for(let i = 1; i <= 15; i++) {
         thermostat.up()
       }
       expect(thermostat.up()).toEqual(32)
@@ -59,6 +61,25 @@ describe("Thermostat", () => {
       expect(thermostat.targetTemperature).toEqual(20)
     })
   })
+  
+  describe("Energy usage level", () => {
+    it("shows low when target temperature is less than 18", () => {
+      for(let i = 1; i <= 3; i++) {
+        thermostat.down()
+      }
+      expect(thermostat.energyUsage()).toEqual('Low')
+    })
 
+    it("shows medium when target temperature is greater than or equal to 18 and less than or equal to 25", () => {
+      expect(thermostat.energyUsage()).toEqual('Medium')
+    })
 
+    it("shows high when target temperature is greater than 25", () => {
+      thermostat.switchPowerSave()
+      for(let i = 1; i <= 6; i++) {
+        thermostat.up()
+      }
+      expect(thermostat.energyUsage()).toEqual('High')
+    })
+  })
 })

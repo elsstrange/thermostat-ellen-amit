@@ -1,3 +1,5 @@
+'use strict';
+
 class Thermostat {
 
   constructor() {
@@ -29,6 +31,16 @@ class Thermostat {
 
   reset() {
     return this.targetTemperature = 20
+  }
+
+  energyUsage() {
+    if(this.targetTemperature < 18) {
+      return 'Low'
+    } else if(this.targetTemperature < 26) {
+      return 'Medium'
+    } else {
+      return 'High'
+    }
   }
 
   isMaxTemperature() {
