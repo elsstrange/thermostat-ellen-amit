@@ -29,6 +29,14 @@ class Thermostat {
     this.reset()
   }
 
+  getPowerSaveStatus() {
+    if (this.powerSave) {
+      return 'on'
+    } else {
+      return 'off'
+    }
+  }
+
   reset() {
     return this.targetTemperature = 20
   }

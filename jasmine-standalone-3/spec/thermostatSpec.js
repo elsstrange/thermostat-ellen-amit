@@ -60,8 +60,16 @@ describe("Thermostat", () => {
       thermostat.switchPowerSave()
       expect(thermostat.targetTemperature).toEqual(20)
     })
+
+    it('can return the power save status', () => {
+      expect(thermostat.getPowerSaveStatus()).toEqual('on')
+      thermostat.switchPowerSave()
+      expect(thermostat.getPowerSaveStatus()).toEqual('off')
+    })
+
+
   })
-  
+
   describe("Energy usage level", () => {
     it("shows low when target temperature is less than 18", () => {
       for(let i = 1; i <= 3; i++) {
