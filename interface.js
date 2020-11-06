@@ -2,12 +2,14 @@ $( document ).ready(function() {
   let thermostat = new Thermostat()
   updateTemperature()
   updatePowerSave()
-  
-  $.get(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${weatherApiKey}&units=metric`, (weatherData) => {
-    $('span#weather-description').text(weatherData.weather[0].description)
-    $('span#weather-temperature').text(weatherData.main.temp)
-    $('span#weather-feels-like').text(weatherData.main.feels_like)
-    $('span#weather-windspeed').text(weatherData.wind.speed)
+  updateWeather()
+
+  $("#change-location" ).submit(function( event ) {
+    event.preventDefault()
+    let newLocation = $( "input ").first().val()
+    let newCountry = $( "input ").eq(1).val()
+    updateWeather(newLocation, newCountry)
+
   })
 
   $( "button#down" ).click(function( event ) {
@@ -49,5 +51,24 @@ $( document ).ready(function() {
   function resetUsage() {
     $("button#usage-level").removeClass()
     $('button#usage-level').text("Usage Level")
+  }
+
+  function updateWeather(location='London', country='UK') {
+    $.get(`http://api.openweathermap.org/data/2.5/weather?q=${location},${country}&APPID=${weatherApiKey}&units=metric`, (weatherData) => {
+      console.log(weatherData)
+      $('span#location').text(`${weatherData.name}, ${weatherData.sys.country}`)
+      $('span#weather-description').text(weatherData.weather[0].description)
+      $('span#weather-temperature').text(weatherData.main.temp)
+      $('span#weather-feels-like').text(weatherData.main.feels_like)
+      $('span#weather-windspeed').text(weatherData.wind.speed)
+    })
+    .fail(() => {
+      alert(`${location} does not exist`)
+      $('span#location').text("")
+      $('span#weather-description').text("")
+      $('span#weather-temperature').text("")
+      $('span#weather-feels-like').text("")
+      $('span#weather-windspeed').text("")
+    })
   }
 });

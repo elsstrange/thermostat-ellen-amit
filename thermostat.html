@@ -10,12 +10,19 @@
     <script src="interface.js"></script>
   </head>
   <body>
+      <form id="change-location" action="thermostat.html" method="post">
+        <label for="weather-location">Current weather for:</label>
+        <input type="text" name="weather-location" value="London">
+        <input type="text" name= "weather-country" value="UK">
+        <button class="small-button" type="submit">Change Location</button>
+      </form>
     <p class="weather-block">
-      Current weather for: London<br>
+      <span id="location" ></span><br>
       <span id="weather-description"></span><br>
       Temperature: <span id="weather-temperature"></span><br>
       Feels like: <span id="weather-feels-like"></span><br>
       Windspeed: <span id="weather-windspeed"></span>
+
     </p>
     <button id='usage-level'>Usage Level</button>
     <button id='powersave-switch'>POWER SAVE <span id="powersave-status"></span></button>
