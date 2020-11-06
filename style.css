@@ -66,3 +66,23 @@ button {
 #current-temperature {
   font-size: 50pt;
 }
+
+.on {
+  background-color: springgreen
+}
+
+.off {
+  background-color: crimson
+}
+
+.High {
+  background-color: crimson
+}
+
+.Medium {
+  background-color: orange
+}
+
+.Low {
+  background-color: springgreen
+}

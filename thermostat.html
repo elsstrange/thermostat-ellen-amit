@@ -6,42 +6,13 @@
     <title>ThermostAmit</title>
     <script type='text/javascript' src="jasmine-standalone-3/src/Thermostat.js"></script>
     <script src="jquery-3.5.1.js"></script>
-    <script>
-      $( document ).ready(function() {
-        let thermostat = new Thermostat()
-        
-        $( "button#down" ).click(function( event ) {
-          thermostat.down()  
-          $("p#current-temperature").text(thermostat.targetTemperature)
-        });
-        $( "button#up" ).click(function( event ) {
-          thermostat.up()  
-          $("p#current-temperature").text(thermostat.targetTemperature)
-        });
-        $( "button#reset" ).click(function( event ) {
-          thermostat.reset()  
-          $("p#current-temperature").text(thermostat.targetTemperature)
-        });
-        $( "button#powersave-switch" ).click(function( event ) {
-          thermostat.switchPowerSave()  
-          $("button#powersave-switch").text(thermostat.powerSave)
-          if(thermostat.powerSave) {
-            $("button#powersave-switch").css("background-color","springgreen")
-            $("button#powersave-switch").text("ON")
-          } else {
-            $("button#powersave-switch").css("background-color","crimson")
-            $("button#powersave-switch").text("OFF")
-          }
-          $("p#current-temperature").text(thermostat.targetTemperature)
-        });
-      });
-    </script>
+    <script src="interface.js"></script>
   </head>
   <body>
-    <button id='usage-level'>Medium</button>
-    <button id='powersave-switch'>ON</button>
+    <button id='usage-level'>Usage Level</button>
+    <button id='powersave-switch'>POWER SAVE ON</button>
 
-    <p id='current-temperature'>20</p>
+    <p id='current-temperature'></p>
 
     <button class='action-btn' id='down'>Down</button>
     <button class='action-btn' id='reset'>Reset</button>
