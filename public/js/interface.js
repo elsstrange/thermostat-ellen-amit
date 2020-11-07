@@ -1,8 +1,15 @@
 $( document ).ready(function() {
-  let thermostat = new Thermostat()
-  updateTemperature()
-  updatePowerSave()
-  updateWeather()
+  let thermostat
+  $.get('/api/thermostat', (data) => {
+    thermostat = new Thermostat(data.temperature)
+    updateTemperature()
+    updatePowerSave()
+    updateWeather()
+  })
+  // let thermostat = new Thermostat()
+  // updateTemperature()
+  // updatePowerSave()
+  // updateWeather()
 
   $("#change-location" ).submit(function( event ) {
     event.preventDefault()
@@ -39,8 +46,16 @@ $( document ).ready(function() {
     setTimeout( resetUsage, 2000)
   })
 
+  function postTemperature() {
+    $.post('/api/thermostat', {temperature: thermostat.targetTemperature} ,(data, status) => {
+      console.log(data)
+      console.log(status);
+    })
+  }
+
   function updateTemperature() {
     $("p#current-temperature").text(thermostat.targetTemperature)
+    postTemperature()
   }
 
   function updatePowerSave() {

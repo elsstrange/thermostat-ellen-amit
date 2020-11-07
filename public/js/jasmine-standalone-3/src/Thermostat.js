@@ -2,10 +2,11 @@
 
 class Thermostat {
 
-  constructor() {
-    const defaultTarget = 20
+  constructor(temperature = 20) {
+    // this.temperature = temperature
+    // const defaultTarget = 20
     this.powerSave = true
-    this.targetTemperature = defaultTarget
+    this.targetTemperature = temperature
   }
 
   up() {
