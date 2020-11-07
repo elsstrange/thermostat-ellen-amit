@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>ThermostAmit</title>
+    <script type='text/javascript' src="js/jasmine-standalone-3/src/Thermostat.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/api-key.js"></script>
+    <script src="js/interface.js"></script>
+  </head>
+  <body>
+      <form id="change-location" action="thermostat.html" method="post">
+        <label for="weather-location">Current weather for:</label>
+        <input type="text" name="weather-location" value="London">
+        <input type="text" name= "weather-country" value="UK">
+        <button class="small-button" type="submit">Change Location</button>
+      </form>
+    <p class="weather-block">
+      <span id="location" ></span><br>
+      <span id="weather-description"></span><br>
+      Temperature: <span id="weather-temperature"></span><br>
+      Feels like: <span id="weather-feels-like"></span><br>
+      Windspeed: <span id="weather-windspeed"></span>
+
+    </p>
+    <button id='usage-level'>Usage Level</button>
+    <button id='powersave-switch'>POWER SAVE <span id="powersave-status"></span></button>
+
+    <p id='current-temperature'></p>
+
+    <button class='action-btn' id='down'>Down</button>
+    <button class='action-btn' id='reset'>Reset</button>
+    <button class='action-btn' id='up'>Up</button>
+  </body>
+</html>
