@@ -3,12 +3,7 @@ let thermostat
 $( document ).ready(function() {
       // loading the app
       let appElement = $('#app')
-      let upButton = $('#up')
-      let downButton = 0  //$('#down')
-      let resetButton = $('#reset')
-      let powerSaveButton = $('#powersave-switch')
-      thermostat = new Thermostat(appElement, upButton, downButton,
-        resetButton, powerSaveButton)
+      thermostat = new Thermostat(appElement)
       let weatherElement = $('#weather')
       let weatherForm = $('#change-location')
       weather = new Weather(weatherElement, weatherForm)

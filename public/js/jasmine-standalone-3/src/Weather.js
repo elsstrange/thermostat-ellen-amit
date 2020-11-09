@@ -1,5 +1,10 @@
+// weatherApp       >>> weatherDisplay
+//                  >>> weatherForm
+//                  >>> weatherApi
+
+
 class Weather {
-  constructor(element, form) {
+  constructor(element, form, weatherApi) {
     this._element = element
     this._form = form
     this.render = this.render.bind(this)

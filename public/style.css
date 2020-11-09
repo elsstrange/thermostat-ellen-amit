@@ -53,7 +53,7 @@ body {
 }
 
 button {
-  margin: 10% 5% 10% 5%;
+  margin: 5% 5% 0% 5%;
   padding: 2% 5% 2% 5%;
   border-radius: 15%;
 }
@@ -65,6 +65,8 @@ button {
 
 #current-temperature {
   font-size: 50pt;
+  margin: 5%;
+  padding: 5%;
 }
 
 .on {
@@ -75,16 +77,16 @@ button {
   background-color: crimson
 }
 
-.High {
-  background-color: crimson
+.high {
+  color: crimson
 }
 
-.Medium {
-  background-color: orange
+.medium {
+  color: darkorange;
 }
 
-.Low {
-  background-color: springgreen
+.low {
+  color: forestgreen;
 }
 
 .weather-block {

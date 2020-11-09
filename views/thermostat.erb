@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>ThermostAmit</title>
-    <script type='text/javascript' src="js/jasmine-standalone-3/src/Thermostat_2.js"></script>
-    <script type='text/javascript' src="js/jasmine-standalone-3/src/Weather.js"></script>
+    <script src="js/jasmine-standalone-3/src/Thermostat_2.js"></script>
+    <script src="js/jasmine-standalone-3/src/Weather.js"></script>
+    <script src="js/jasmine-standalone-3/src/weatherApi.js"></script>
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/api-key.js"></script>
     <script src="js/interface.js"></script>
@@ -22,16 +23,7 @@
     <div id='weather'>
 
     </div>
-
-    <button id='usage-level'>Usage Level</button>
-    <button id='powersave-switch'>POWER SAVE <span id="powersave-status"></span></button>
-
     <div id="app">
-
     </div>
-
-    <%# <button class='action-btn' id='down' onclick=`${this.render}` >Down</button> %>
-    <button class='action-btn' id='reset'>Reset</button>
-    <button class='action-btn' id='up'>Up</button>
   </body>
 </html>

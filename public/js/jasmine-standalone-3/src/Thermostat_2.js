@@ -2,97 +2,62 @@
 
 class Thermostat {
 
-  constructor(element, upButton, downButton, resetButton,
-    powerSaveButton, temperature = 20) {
+  constructor(element, temperature = 20) {
     this.powerSave = true
     this.targetTemperature = temperature
     this._element = element
-    // this.callThermostatApi()
-    // this.prepareControls()
-    // this.render()
-    this.setupControls = this.setupControls.bind(this)
+       
+    this.downClick = this.downClick.bind(this)
+    this.upClick = this.upClick.bind(this)
+    this.resetClick = this.resetClick.bind(this)
+    this.powerSaveClick = this.powerSaveClick.bind(this)
+
+    // this.callThermostatApi()  // Future work!
     this.setupControls()
-    this.render()
-
-
-     // add it to the html tree.
-    // debugger;
-    // this._element.append(this._downButton)
-    // this._element.addChild()
-
-
-    // this._downButton = $.add('button').addClass('down')
-
-
-
-
-
-    this._upButton = upButton
-    this._resetButton = resetButton
-    this._powerSaveButton = powerSaveButton
-    this.up = this.up.bind(this)
-    this.down = this.down.bind(this)
-    this.reset = this.reset.bind(this)
-    this.energyUsage = this.energyUsage.bind(this)
-    this.getPowerSaveStatus = this.getPowerSaveStatus.bind(this)
-    this.switchPowerSave = this.switchPowerSave.bind(this)
-    this.render = this.render.bind(this)
-
-    $(this._upButton).click((event) => {
-      this.up()
-      this.render()
-    })
-
-
-
-
-
-    $(this._resetButton).click((event) => {
-      this.reset()
-      this.render()
-    })
-
-    $(this._powerSaveButton).click((event) => {
-      this.switchPowerSave()
-      this.render()
-    })
-
+    this.renderState()
   }
 
   setupControls() {
-    // this._downButton = document.createElement('button')
-
-    // $(this._downButton).addClass('action-btn').text('down')
-
-    // this._stateDiv = document.createElement('div')
     $(this._element).append("<div id='thermostat-state'>")
-
-    // this._downButton = $('<button>').addClass('action-btn').text('down')
-    // this._element.append(this._downButton)
-    this._element.append(this.getDownButton())
-    // $(this._downButton).click((event) => {
-    //   this.down()
-    //   this.render()
-    // })
+    this._element.append(this.getButton('action-btn','Down',this.downClick))
+    this._element.append(this.getButton('action-btn','Reset',this.resetClick))
+    this._element.append(this.getButton('action-btn','Up',this.upClick))
+    this._element.append(this.getButton('powersave-btn','Power Save',this.powerSaveClick))
   }
 
-  getDownButton() {
-    let downButton = $('<button>').addClass('action-btn').text('down')
-    $(downButton).click((event) => {
-      this.down()
-      this.render()
-    })
-    return downButton
+  getButton(klass, text, callback) {
+    let Button = $('<button>').addClass(klass).text(text)
+    $(Button).click(callback)
+    return Button
   }
 
-  render() {
+  downClick() {
+    this.down()
+    this.renderState()
+  }
+
+  upClick() {
+    this.up()
+    this.renderState()
+  }
+
+  resetClick() {
+    this.reset()
+    this.renderState()
+  }
+
+  powerSaveClick() {
+    this.switchPowerSave()
+    this.renderState()
+  }
+
+  renderState() {
     let html = [
-      `<p id='current-temperature'>${this.targetTemperature}</p>`,
+      `<p id='current-temperature' class='${this.energyUsage().toLowerCase()}'>${this.targetTemperature}</p>`,
       `<p>Energy usage: ${this.energyUsage()}</p>`
     ].join('')
-    $(this._powerSaveButton).text(`Power save: ${this.getPowerSaveStatus()}`)
+    $('.powersave-btn').text(`POWER SAVE ${this.getPowerSaveStatus().toUpperCase()}`)
     $('#thermostat-state').html(html)
-
   }
 
   up() {
@@ -141,6 +106,4 @@ class Thermostat {
   isMaxTemperature() {
     return (this.powerSave && this.targetTemperature >= 25) || (!this.powerSave && this.targetTemperature >= 32)
   }
-
-
 }
