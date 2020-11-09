@@ -9,7 +9,6 @@ $( document ).ready(function() {
       let powerSaveButton = $('#powersave-switch')
       thermostat = new Thermostat(appElement, upButton, downButton,
         resetButton, powerSaveButton)
-      thermostat.render()
       let weatherElement = $('#weather')
       let weatherForm = $('#change-location')
       weather = new Weather(weatherElement, weatherForm)
