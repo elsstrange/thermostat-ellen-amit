@@ -4,7 +4,7 @@ $( document ).ready(function() {
       // loading the app
       let appElement = $('#app')
       let upButton = $('#up')
-      let downButton = $('#down')
+      let downButton = 0  //$('#down')
       let resetButton = $('#reset')
       let powerSaveButton = $('#powersave-switch')
       thermostat = new Thermostat(appElement, upButton, downButton,

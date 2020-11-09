@@ -4,13 +4,26 @@ class Thermostat {
 
   constructor(element, upButton, downButton, resetButton,
     powerSaveButton, temperature = 20) {
-    // this.temperature = temperature
-    // const defaultTarget = 20
     this.powerSave = true
     this.targetTemperature = temperature
     this._element = element
+    // this.callThermostatApi()
+    // this.prepareControls()
+    // this.render()
+
+    this._downButton = document.createElement('button') // add it to the html tree.
+    // debugger;
+    // this._element.append(this._downButton)
+    // this._element.addChild()
+    
+
+    // this._downButton = $.add('button').addClass('down')
+    
+    
+    
+    
+    
     this._upButton = upButton
-    this._downButton = downButton
     this._resetButton = resetButton
     this._powerSaveButton = powerSaveButton
     this.up = this.up.bind(this)
@@ -26,10 +39,15 @@ class Thermostat {
       this.render()
     })
 
+    console.log('Before setting down button listener')
+
     $(this._downButton).click((event) => {
+      console.log('start of down button callback')
       this.down()
       this.render()
+      console.log('end of down button callback')
     })
+    console.log('After setting down button listener')
 
     $(this._resetButton).click((event) => {
       this.reset()
@@ -44,8 +62,13 @@ class Thermostat {
   }
 
   render() {
+    let html = [
+      `<p id='current-temperature'>${this.targetTemperature}</p>`,
+      `<p>Energy usage: ${this.energyUsage()}</p>`
+    ].join('')
     $(this._powerSaveButton).text(`Power save: ${this.getPowerSaveStatus()}`)
-    $(this._element).html(`<p id = 'current-temperature'>${this.targetTemperature}</p><p>Energy usage: ${this.energyUsage()}</p>`)
+    $(this._element).html(html)
+    this._element.append(this._downButton)
   }
 
   up() {
