@@ -1,12 +1,10 @@
 'use strict';
 
 class Thermostat {
-
   constructor(temperature = 20) {
-    // this.temperature = temperature
-    // const defaultTarget = 20
     this.powerSave = true
     this.targetTemperature = temperature
+    // this.callThermostatApi()  // Future work!
   }
 
   up() {
@@ -55,5 +53,4 @@ class Thermostat {
   isMaxTemperature() {
     return (this.powerSave && this.targetTemperature >= 25) || (!this.powerSave && this.targetTemperature >= 32)
   }
-
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-class Thermostat {
+class Thermostat2 {
 
   constructor(element, temperature = 20) {
     this.powerSave = true
